@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JSON Blob of Error State</h2>
+<br><br>
+
+<pre id="json"></pre>
+
+<script>
+var data = JSON_BLOB
+document.getElementById("json").textContent = JSON.stringify(data, undefined, 2);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+parker_huntington:
+	-Web management port: 8080
+	-Modbus port (for fuzzing): 5000
+	-Container ID: e8ec4d1a8aba345b0af2084435ec3dc33c1780e1825fd52e735f9b26db5f6bfc
+	-Docker internal IP:     inet 172.17.0.3/16 brd 172.17.255.255 scope global eth0
+
+
+ruggles_huntington:
+	-Web management port: 8081
+	-Modbus port (for fuzzing): 5001
+	-Container ID: 7a4dd82e2d1ea61aa60fbb574279d7d7f42bc1be21f45dd8c2f48485d1b3cf80
+	-Docker internal IP:     inet 172.17.0.4/16 brd 172.17.255.255 scope global eth0
+
+
+forsyth_huntington:
+	-Web management port: 8082
+	-Modbus port (for fuzzing): 5002
+	-Container ID: 4f794b61c069ae914945f2dbbdc990dee2e880edf8725ea245a35fc0904da220
+	-Docker internal IP:     inet 172.17.0.5/16 brd 172.17.255.255 scope global eth0
+
+
+field_master:
+	-Web management port: 8083
+	-Modbus port (for fuzzing): 5003
+	-Container ID: eb811ac7d8fa41cee8d075cb378a4157bbd1e89deec4ba36232e836f8274b235
+	-Docker internal IP:     inet 172.17.0.6/16 brd 172.17.255.255 scope global eth0
+
+

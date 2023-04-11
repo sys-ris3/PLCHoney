@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Set Reflector</h2>
+
+<table>
+  <tr>
+    <th>Container</th>
+    <th>IP Address</th>
+    <th>Variable Name</th>
+    <th>Variable Type</th>
+    <th>Coil</th>
+    <th>Current State</th>
+    <th>Port</th>
+  </tr>
+TABLE_ROWS
+</table>
+
+<form action="/reflector/RECEIVE_PORT" method='POST'>
+  <input type="hidden" id="receive_port" name="receive_port" value="RECEIVE_PORT"><br>
+  <label for="reflect_socket">Where should the above port be reflected?</label>
+  <select name="object" id="object">
+  DROPDOWN
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,625 @@
+FUNCTION_BLOCK Parameter_Array
+  VAR_OUTPUT
+    min_green_arr : ARRAY [1..6] OF TIME := [T#8s, T#6s, T#0s, T#0s, T#8s, T#5s];
+    max_green_arr : ARRAY [1..6] OF TIME := [T#30s, T#14s, T#0s, T#30s, T#20s, T#12s];
+    veh_ext_arr : ARRAY [1..6] OF TIME := [T#2s, T#2s, T#0s, T#0s, T#3s, T#3s];
+    yellow_cl_arr : ARRAY [1..6] OF TIME := [T#3s500ms, T#3s500ms, T#0s, T#3s500ms, T#3s500ms, T#3s];
+    red_cl_arr : ARRAY [1..6] OF TIME := [T#2s, T#5s, T#3s, T#3s, T#5s, T#3s];
+    walk_sec_arr : ARRAY [1..6] OF TIME := [T#8s, T#8s, T#6s, T#6s, T#8s, T#8s];
+    ped_cl_arr : ARRAY [1..6] OF TIME := [T#8s, T#8s, T#6s, T#6s, T#8s, T#8s];
+  END_VAR
+  VAR
+    tmp : BOOL;
+  END_VAR
+
+  tmp := False;
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK Phase_Five
+  VAR_INPUT
+    Max_PT : TIME;
+    Red_3 : BOOL;
+    Red_5 : BOOL;
+    Green_5 : BOOL;
+    Yellow_5 : BOOL;
+    End_Cycle : TIME;
+  END_VAR
+  VAR_OUTPUT
+    N_G : BOOL;
+    S_G : BOOL;
+    S_P : BOOL;
+    N_Y : BOOL;
+    S_Y : BOOL;
+    N_R : BOOL;
+    S_R : BOOL;
+    W_R : BOOL;
+    E_LR : BOOL;
+    E_R : BOOL;
+    End_of_Green : BOOL := False;
+    Clear_Timer : TIME;
+  END_VAR
+  VAR
+    test_end_cycle : TIME;
+    pars : Parameter_Array;
+  END_VAR
+
+  (* Third Phase*)
+  Clear_timer := Max_PT;
+
+  End_of_Green := False;
+
+  test_end_cycle := End_Cycle;
+
+  IF LE(End_Cycle, pars.yellow_cl_arr[5] + pars.red_cl_arr[5]) THEN
+    Clear_Timer := T#0ms;
+    End_of_Green := True;
+  END_IF;
+
+
+  N_G := NOT(End_of_Green);
+  S_G := NOT(End_of_Green);
+
+  S_P := NOT(End_of_Green);
+  N_Y := AND(End_of_Green, NOT(Yellow_5));
+  S_Y := AND(End_of_Green, NOT(Yellow_5));
+
+  N_R := AND(Yellow_5, NOT(Red_5));
+  S_R := AND(Yellow_5, NOT(Red_5));
+
+  E_LR := True;
+  E_R := True;
+  W_R := True;
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK Clear_States
+  VAR_OUTPUT
+    N_G : BOOL;
+    S_G : BOOL;
+    E_G : BOOL;
+    W_G : BOOL;
+    N_Y : BOOL;
+    S_Y : BOOL;
+    E_Y : BOOL;
+    W_Y : BOOL;
+    N_R : BOOL;
+    S_R : BOOL;
+    E_R : BOOL;
+    W_R : BOOL;
+    N_LY : BOOL;
+    S_LY : BOOL;
+    E_LY : BOOL;
+    W_LY : BOOL;
+    N_LG : BOOL;
+    S_LG : BOOL;
+    E_LG : BOOL;
+    W_LG : BOOL;
+    N_LR : BOOL;
+    S_LR : BOOL;
+    E_LR : BOOL;
+    W_LR : BOOL;
+    N_P : BOOL;
+    S_P : BOOL;
+    E_P : BOOL;
+    W_P : BOOL;
+  END_VAR
+
+  N_G := False;
+  S_G := False;
+  E_G := False;
+  W_G := False;
+  N_Y := False;
+  S_Y := False;
+  E_Y := False;
+  W_Y := False;
+  N_R := False;
+  S_R := False;
+  E_R := False;
+  W_R := False;
+  N_LY := False;
+  S_LY := False;
+  E_LY := False;
+  W_LY := False;
+  N_LG := False;
+  S_LG := False;
+  E_LG := False;
+  W_LG := False;
+  N_LR := False;
+  S_LR := False;
+  E_LR := False;
+  W_LR := False;
+  N_P := False;
+  S_P := False;
+  E_P := False;
+  W_P := False;
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK Phase_Six
+  VAR_INPUT
+    Max_PT : TIME;
+    Red_5 : BOOL;
+    Red_6 : BOOL;
+    Green_6 : BOOL;
+    Yellow_6 : BOOL;
+    End_Cycle : TIME;
+  END_VAR
+  VAR_OUTPUT
+    E_G : BOOL;
+    E_LG : BOOL;
+    N_P : BOOL;
+    E_Y : BOOL;
+    E_LY : BOOL;
+    E_R : BOOL;
+    E_LR : BOOL;
+    W_R : BOOL;
+    N_R : BOOL;
+    S_R : BOOL;
+    End_of_Green : BOOL := False;
+    Clear_Timer : TIME;
+  END_VAR
+  VAR
+    test_end_cycle : TIME;
+    pars : Parameter_Array;
+  END_VAR
+
+  (* Third Phase*)
+  Clear_timer := Max_PT;
+
+  End_of_Green := False;
+
+  test_end_cycle := End_Cycle;
+
+  IF LE(End_Cycle, pars.yellow_cl_arr[6] + pars.red_cl_arr[6]) THEN
+    Clear_Timer := T#0ms;
+    End_of_Green := True;
+  END_IF;
+
+
+  E_G := NOT(End_of_Green);
+  E_LG := NOT(End_of_Green);
+
+  N_P := NOT(End_of_Green);
+  E_Y := AND(End_of_Green, NOT(Yellow_6));
+  E_LY := AND(End_of_Green, NOT(Yellow_6));
+
+  E_R := AND(Yellow_6, NOT(Red_6));
+  E_LR := AND(Yellow_6, NOT(Red_6));
+
+  W_R := True;
+  N_R := True;
+  S_R := True;
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK Phase_One
+  VAR_INPUT
+    Max_PT : TIME;
+    Veh_Cnt : INT;
+    Ped_Pressed : BOOL;
+    Green_min_1 : BOOL;
+    Green_max_1 : BOOL;
+    Ped_1 : BOOL;
+    Yellow_1 : BOOL;
+    Red_1 : BOOL;
+  END_VAR
+  VAR_OUTPUT
+    Clear_Timer : TIME;
+    W_G : BOOL;
+    E_G : BOOL;
+    E_P : BOOL;
+    W_Y : BOOL;
+    E_Y : BOOL;
+    W_R : BOOL;
+    E_R : BOOL;
+    N_R : BOOL;
+    S_R : BOOL;
+    E_LR : BOOL;
+  END_VAR
+  VAR
+    pars : Parameter_Array;
+    veh_total : INT;
+    TON_Veh_ext : TON;
+    TON_Ped_ext : TON;
+  END_VAR
+  VAR_OUTPUT
+    extended : BOOL;
+    ped_ext_green : BOOL := False;
+    End_of_green : BOOL;
+  END_VAR
+
+  veh_total := MUL(Veh_cnt, TIME_TO_INT(pars.veh_ext_arr[1])); 
+  TON_Veh_ext(IN := AND(Green_min_1, NOT(Green_max_1)), PT := INT_TO_TIME(veh_total));
+
+  IF AND(TON_Veh_ext.Q, GT(veh_total, TIME_TO_INT(TON_Veh_ext.PT))) THEN
+    TON_Veh_ext(IN := NOT(Green_max_1), PT := INT_TO_TIME(SUB(veh_total, TIME_TO_INT(TON_Veh_ext.PT))));
+  END_IF;
+
+       
+  extended := AND(Green_min_1, AND(NOT(TON_Veh_ext.Q), GT(TON_Veh_ext.ET, T#0ms)));
+
+  (* NS_Green_On detects if the current green is still ON *)
+  (* Pedestrian clearance only happens when green is not ended, and ped button is pressed *)
+  (* Ped clearance can extend to yellow ON *)
+  IF OR(NOT(Green_min_1), extended) THEN
+    TON_Ped_ext(IN := AND(Ped_1, Ped_Pressed), PT := pars.ped_cl_arr[1]);
+  END_IF;
+
+  (* Pedestrain input can extend green, if green max is not reached, and ped timer is not reached*)
+  IF AND(extended, GT(TON_Ped_ext.ET, T#0ms)) THEN
+    ped_ext_green := True;
+  END_IF;
+
+  (* Set the end of green ON *)
+  Clear_timer := Max_PT;
+  (*End_of_green := OR(AND(NOT(ped_ext_green), Green_min_1, NOT(extended)), Green_max_1); 
+  *)
+  End_of_green := OR(AND(TON_Veh_ext.Q, TON_Ped_ext.Q), Green_max_1); 
+
+  IF End_of_green THEN
+    Clear_timer := T#0ms;
+  END_IF;
+
+
+  W_G := NOT(End_of_green);
+  E_G := NOT(End_of_green);
+  E_P := AND(OR(NOT(Ped_1), GT(TON_Ped_ext.ET, T#0ms)), NOT(Yellow_1));
+
+  W_Y := AND(End_of_green, NOT(Yellow_1));
+  E_Y := AND(End_of_green, NOT(Yellow_1));
+
+  W_R := AND(Yellow_1, NOT(Red_1));
+  E_R := AND(Yellow_1, NOT(Red_1));
+
+
+
+  (**)
+  N_R := True;
+  S_R := True;
+  E_LR := True;
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK Phase_Two
+  VAR_OUTPUT
+    Clear_timer : TIME;
+  END_VAR
+  VAR_INPUT
+    Max_PT : TIME;
+    Red_1 : BOOL;
+    Green_min_2 : BOOL;
+    Green_max_2 : BOOL;
+    Veh_cnt : INT;
+    Ped_2 : BOOL;
+    Ped_Pressed : BOOL;
+    Yellow_2 : BOOL;
+    Red_2 : BOOL;
+  END_VAR
+  VAR_OUTPUT
+    N_G : BOOL;
+    S_G : BOOL;
+    N_LG : BOOL;
+    S_LG : BOOL;
+    N_P : BOOL;
+    S_P : BOOL;
+    N_Y : BOOL;
+    S_Y : BOOL;
+    N_LY : BOOL;
+    S_LY : BOOL;
+    N_R : BOOL;
+    S_R : BOOL;
+    W_R : BOOL;
+    E_R : BOOL;
+    E_LR : BOOL;
+  END_VAR
+  VAR
+    veh_total : INT;
+    TON_Veh_ext : TON;
+    TON_Ped_ext : TON;
+  END_VAR
+  VAR_OUTPUT
+    End_of_green : BOOL := False;
+  END_VAR
+  VAR
+    ped_ext_green : BOOL := False;
+    extended : BOOL;
+    pars : Parameter_Array;
+  END_VAR
+
+  (* Second Phase*)
+  veh_total := MUL(Veh_cnt, TIME_TO_INT(pars.veh_ext_arr[2])); 
+  TON_Veh_ext(IN := AND(Green_min_2, NOT(Green_max_2)), PT := INT_TO_TIME(veh_total));
+
+  IF AND(TON_Veh_ext.Q, GT(veh_total, TIME_TO_INT(TON_Veh_ext.PT))) THEN
+    TON_Veh_ext(IN := NOT(Green_max_2), PT := INT_TO_TIME(SUB(veh_total, TIME_TO_INT(TON_Veh_ext.PT))));
+  END_IF;
+
+  extended := AND(Green_min_2, GT(TON_Veh_ext.ET, T#0ms));
+
+  IF OR(NOT(Green_min_2), extended) THEN
+    TON_Ped_ext(IN := AND(Ped_2, Ped_Pressed), PT := pars.ped_cl_arr[2]);
+  END_IF; 
+  (* Pedestrain input can extend green, if green max is not reached, and ped timer is not reached*)
+  IF AND(TON_Veh_ext.Q, GT(TON_Ped_ext.ET, T#0ms)) THEN
+    ped_ext_green := True; (*have to be initialized to False*)
+  END_IF;
+
+
+  (* Set the end of green ON *)
+  Clear_timer := Max_PT;
+  End_of_green := OR(AND(TON_Veh_ext.Q, TON_Ped_ext.Q), Green_max_2); 
+  IF End_of_green THEN
+    Clear_timer := T#0ms;
+  END_IF;
+
+  N_G := NOT(End_of_green);
+  N_LG := NOT(End_of_green);
+
+
+  N_Y := AND(End_of_green, NOT(Yellow_2));
+  N_LY := AND(End_of_green, NOT(Yellow_2));
+
+  N_R := AND(Yellow_2, NOT(Red_2));
+
+  W_R := True;
+  E_R := True;
+  E_LR := True;
+  S_R := True;
+
+
+
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK Phase_Three
+  VAR_OUTPUT
+    N_R : BOOL;
+    S_R : BOOL;
+    W_R : BOOL;
+    E_R : BOOL;
+    E_LR : BOOL;
+    W_P : BOOL;
+  END_VAR
+  VAR_INPUT
+    Ped_3 : BOOL;
+    Ped_Pressed : BOOL;
+  END_VAR
+
+  W_P := True;
+  N_R := True;
+  S_R := True;
+  W_R := True;
+  E_R := True;
+  E_LR := True;
+END_FUNCTION_BLOCK
+
+PROGRAM Ruggles_Street
+  VAR_INPUT
+    NS_Vehical_Cnt : INT;
+    EW_Vehical_Cnt : INT;
+    N_Ped_Pressed : BOOL;
+    S_Ped_Pressed : BOOL;
+    E_Ped_Pressed : BOOL;
+    W_Ped_Pressed : BOOL;
+    Offset : INT;
+  END_VAR
+
+  VAR_INPUT
+    Cycle_Length1 : INT := 31;
+    Cycle_Length2 : INT := 19;
+    Cycle_Length3 : INT := 0;
+    Cycle_Length4 : INT := 23; 
+    Cycle_Length5 : INT := 17;
+    Cycle_Length6 : INT := 0;
+  END_VAR
+
+  VAR
+    N_G AT %QX0.0 : BOOL;
+    S_G AT %QX0.1 : BOOL;
+    E_G AT %QX0.2 : BOOL;
+    W_G AT %QX0.3 : BOOL;
+    N_Y AT %QX0.4 : BOOL;
+    S_Y AT %QX0.5 : BOOL;
+    E_Y AT %QX0.6 : BOOL;
+    W_Y AT %QX0.7 : BOOL;
+    N_R AT %QX1.0 : BOOL;
+    S_R AT %QX1.1 : BOOL;
+    E_R AT %QX1.2 : BOOL;
+    W_R AT %QX1.3 : BOOL;
+    N_LY AT %QX1.4 : BOOL;
+    S_LY AT %QX1.5 : BOOL;
+    E_LY AT %QX1.6 : BOOL;
+    W_LY AT %QX1.7 : BOOL;
+    N_LG AT %QX2.0 : BOOL;
+    S_LG AT %QX2.1 : BOOL;
+    E_LG AT %QX2.2 : BOOL;
+    W_LG AT %QX2.3 : BOOL;
+    N_LR AT %QX2.4 : BOOL;
+    S_LR AT %QX2.5 : BOOL;
+    E_LR AT %QX2.6 : BOOL;
+    W_LR AT %QX2.7 : BOOL;
+    N_P AT %QX3.0 : BOOL;
+    S_P AT %QX3.1 : BOOL;
+    E_P AT %QX3.2 : BOOL;
+    W_P AT %QX3.3 : BOOL;
+    Offset_out AT %QW1 : INT;
+  END_VAR
+  VAR
+    pars : Parameter_Array;
+    Clear : Clear_States;
+    Start_Loop : BOOL := False;
+    yellow_in1 : BOOL := False;
+    yellow_in2 : BOOL := False;
+    yellow_in4 : BOOL := False;
+    yellow_in5 : BOOL := False;
+    yellow_in6 : BOOL := False;
+    Phase_1 : Phase_One;
+    Phase_2 : Phase_Two;
+    Phase_3 : Phase_Three;
+    Phase_5 : Phase_Five;
+    Phase_6 : Phase_Six;
+    TON_Cycle : TON;
+    TON_Green_min_1 : TON;
+    TON_Green_max_1 : TON;
+    TON_Ped_1 : TON;
+    TON_Yellow_1 : TON;
+    TON_Red_1 : TON;
+    TON_Green_min_2 : TON;
+    TON_Green_max_2 : TON;
+    TON_Yellow_2 : TON;
+    TON_Ped_2 : TON;
+    TON_Red_2 : TON;
+    Green_real_2 : TIME;
+    TON_Green_max_3 : TON;
+    TON_Ped_3 : TON;
+    TON_Ped_ext_3 : TON;
+    TON_Yellow_3 : TON;
+    TON_Red_3 : TON;
+    TON_Green_max_5 : TON;
+    TON_Yellow_5 : TON;
+    TON_Red_5 : TON;
+    TON_Green_max_6 : TON;
+    TON_Yellow_6 : TON;
+    TON_Red_6 : TON;
+  END_VAR
+
+  (* Clear the light states*)
+  Clear(
+     N_G => N_G, N_LG => N_LG, N_Y => N_Y, N_LY => N_LY, N_R => N_R, N_LR => N_LR, N_P => N_P,
+     S_G => S_G, S_LG => S_LG, S_Y => S_Y, S_LY => S_LY, S_R => S_R, S_LR => S_LR, S_P => S_P,
+     E_G => E_G, E_LG => E_LG, E_Y => E_Y, E_LY => E_LY, E_R => E_R, E_LR => E_LR, E_P => E_P,
+     W_G => W_G, W_LG => W_LG, W_Y => W_Y, W_LY => W_LY, W_R => W_R, W_LR => W_LR, W_P => W_P);
+
+  (* --- Start running the Phases ---*)
+  (* First Phase: MAX/PED mode*)
+  (* Adjust the offset here *)
+  (* Array of TON is not supported, so we need to define for each light and phase*)
+  (* --- Initilize the Timers ---*)
+  TON_Cycle(IN:= NOT(Start_Loop), PT:= INT_TO_TIME(Cycle_Length1 + Cycle_Length2 + Cycle_Length4 + Cycle_Length5));
+  TON_Green_min_1(IN:= NOT(Start_Loop), PT:= pars.min_green_arr[1]); 
+  TON_Green_max_1(IN:= NOT(Start_Loop), PT:= pars.max_green_arr[1]); 
+  TON_Ped_1(IN:= NOT(Start_Loop), PT:= pars.walk_sec_arr[1]);
+  TON_Yellow_1(IN:= yellow_in1, PT:= pars.yellow_cl_arr[1]);
+  TON_Red_1(IN:= TON_Yellow_1.Q, PT:= pars.red_cl_arr[1]);
+
+  Phase_1(
+     Max_PT := TON_Green_max_1.PT,
+     Green_min_1 := TON_Green_min_1.Q,
+     Green_max_1 := TON_Green_max_1.Q,
+     Veh_cnt := EW_Vehical_Cnt, 
+     Ped_1 := TON_Ped_1.Q,
+     Ped_Pressed := E_Ped_Pressed,
+     Yellow_1 := TON_Yellow_1.Q,
+     Red_1 := TON_Red_1.Q,
+     Clear_timer => TON_Green_max_1.PT,
+     W_G => W_G, W_Y => W_Y, W_R => W_R,
+     E_G => E_G, E_P => E_P, E_Y => E_Y, E_R => E_R, E_LR => E_LR,
+     N_R => N_R, S_R => S_R);
+  yellow_in1 := Phase_1.End_of_green;
+     
+  (* Second Phase*)
+  TON_Green_min_2(IN:= TON_Red_1.Q, PT:= pars.min_green_arr[2]);
+  Green_real_2 := INT_TO_TIME(Cycle_Length2) - pars.yellow_cl_arr[2] - pars.red_cl_arr[2]; 
+  TON_Green_max_2(IN:= TON_Red_1.Q, PT:= Green_real_2);
+  TON_Yellow_2(IN:= yellow_in2, PT:= pars.yellow_cl_arr[2]);
+  TON_Ped_2(IN:= TON_Red_1.Q, PT:= pars.walk_sec_arr[2]);
+  TON_Red_2(IN:= TON_Yellow_2.Q, PT:= pars.red_cl_arr[2]);
+     
+  IF AND(TON_Red_1.Q, NOT(TON_Red_2.Q)) THEN
+    Phase_2(
+     Max_PT := TON_Green_max_2.PT,
+     Red_1 := TON_Red_1.Q,
+     Green_min_2 := TON_Green_min_2.Q,
+     Green_max_2 := TON_Green_max_2.Q, 
+     Veh_cnt := NS_Vehical_Cnt,    
+     Ped_2 := TON_Ped_2.Q,
+     Ped_Pressed := N_Ped_Pressed,
+     Yellow_2 := TON_Yellow_2.Q,
+     Red_2 := TON_Red_2.Q,
+     Clear_timer => TON_Green_max_2.PT,
+     N_G => N_G, N_Y => N_Y, N_R => N_R,
+     S_G => S_G, S_Y => S_Y, S_R => S_R,
+     W_R => W_R, E_R => E_R, E_LR => E_LR);
+
+    yellow_in2 := Phase_2.End_of_green;
+
+  END_IF;
+
+  (* Third Phase*)
+  TON_Ped_3(IN:= TON_Red_2.Q, PT:= pars.walk_sec_arr[3]);
+  TON_Ped_ext_3(IN:= AND(TON_Ped_3.Q, W_Ped_Pressed), PT:= pars.ped_cl_arr[3]);
+
+  IF AND(TON_Red_1.Q, TON_Red_2.Q, NOT(TON_Ped_3.Q), NOT(TON_Ped_ext_3.Q)) THEN
+    Phase_3(W_P => W_P,
+     N_R => N_R,
+  	 S_R => S_R,
+  	 W_R => W_R,
+  	 E_R => E_R,
+  	 E_LR => E_LR);
+    
+  END_IF;
+
+  (* Fifth Phase*)
+  TON_Green_max_5(IN:= AND(TON_Ped_3.Q, NOT(XOR(TON_Ped_ext_3.Q, W_Ped_Pressed))), PT:= pars.max_green_arr[5]);
+  TON_Yellow_5(IN:= yellow_in5, PT:= pars.yellow_cl_arr[5]);
+  TON_Red_5(IN:= TON_Yellow_5.Q, PT:= pars.red_cl_arr[5]);
+
+  IF AND(TON_Red_1.Q, TON_Red_2.Q, NOT(E_P), NOT(TON_Red_5.Q)) THEN
+    Phase_5(
+     Max_PT := TON_Green_max_5.PT,
+     Red_3 := TON_Red_3.Q,
+     Red_5 := TON_Green_max_5.Q,
+     Green_5 := TON_Green_max_5.Q,
+     Yellow_5 := TON_Yellow_5.Q,
+     End_Cycle := TON_Cycle.PT - TON_Cycle.ET,
+     Clear_timer => TON_Green_max_5.PT,
+     N_G => N_G, N_Y => N_Y, N_R => N_R,
+     S_G => S_G, S_Y => S_Y, S_R => S_R,
+     W_R => W_R, 
+     E_R => E_R, E_LR => E_LR);
+
+    yellow_in5 := Phase_5.End_of_Green;
+
+  END_IF;
+
+
+
+  (* Six Phase*)
+  TON_Green_max_6(IN:= TON_Red_5.Q, PT:= pars.max_green_arr[6]);
+  TON_Yellow_6(IN:= yellow_in6, PT:= pars.yellow_cl_arr[6]);
+  TON_Red_6(IN:= TON_Yellow_6.Q, PT:= pars.red_cl_arr[6]);
+
+  IF AND(TON_Red_1.Q, TON_Red_2.Q, NOT(W_P), TON_Red_5.Q, NOT(TON_Red_6.Q)) THEN
+    Phase_6(
+     Max_PT := TON_Green_max_6.PT,
+     Red_5 := TON_Red_5.Q,
+     Red_6 := TON_Green_max_6.Q,
+     Green_6 := TON_Green_max_6.Q,
+     Yellow_6 := TON_Yellow_6.Q,
+     End_Cycle := TON_Cycle.PT - TON_Cycle.ET,
+     Clear_timer => TON_Green_max_6.PT,
+     E_G => E_G, E_LG => E_LG, E_Y => E_Y, E_LY => E_LY,
+     E_R => E_R, E_LR => E_LR, N_P => N_P,
+     W_R => W_R, N_R => N_R, S_R => S_R);
+
+    yellow_in6 := Phase_6.End_of_Green;
+
+  END_IF;
+
+
+  Start_Loop := TON_Red_6.Q; 
+  IF Start_Loop THEN
+    yellow_in1 := False;
+    yellow_in2 := False;
+    yellow_in5 := False;
+    yellow_in6 := False;
+  END_IF;
+
+
+
+
+END_PROGRAM
+
+
+CONFIGURATION Config0
+
+  RESOURCE Res0 ON PLC
+    TASK task0(INTERVAL := T#20ms,PRIORITY := 0);
+    PROGRAM instance0 WITH task0 : Ruggles_Street;
+  END_RESOURCE
+END_CONFIGURATION

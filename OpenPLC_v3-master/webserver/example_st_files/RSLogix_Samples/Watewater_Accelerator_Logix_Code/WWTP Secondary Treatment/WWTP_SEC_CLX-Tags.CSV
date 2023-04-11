@@ -1,0 +1,143 @@
+remark,CSV-Import-Export,,,,,
+remark,Date = Mon Apr 27 11:01:25 2009,,,,,
+remark,Version = RSLogix 5000 v17.00,,,,,
+remark,Owner = user,,,,,
+remark,Company = tetratech,,,,,
+0.3,,,,,,
+TYPE,SCOPE,NAME,DESCRIPTION,DATATYPE,SPECIFIER,ATTRIBUTES
+COMMENT,,Local:2:I,BLR-400$NIn-Auto,,Local:2:I.DATA.0,
+COMMENT,,Local:2:I,BLR-400$NRunning,,Local:2:I.DATA.1,
+COMMENT,,Local:2:I,BLR-400$NFault,,Local:2:I.DATA.2,
+COMMENT,,Local:2:I,Secondary Tank #1$NRunning,,Local:2:I.DATA.3,
+COMMENT,,Local:2:I,Secondary Tank #1$NIn-Auto,,Local:2:I.DATA.4,
+COMMENT,,Local:2:I,Secondary Tank #1$NTorque,,Local:2:I.DATA.5,
+COMMENT,,Local:2:I,Secondary Tank #2$NRunning,,Local:2:I.DATA.6,
+COMMENT,,Local:2:I,Secondary Tank #2$NIn-Auto,,Local:2:I.DATA.7,
+COMMENT,,Local:2:I,Secondary Tank #2$NTorque,,Local:2:I.DATA.8,
+COMMENT,,Local:2:I,M-400$NRunning,,Local:2:I.DATA.9
+COMMENT,,Local:2:I,M-400$NFault,,Local:2:I.DATA.10
+COMMENT,,Local:2:I,M-400$NIn-Auto,,Local:2:I.DATA.11
+COMMENT,,Local:2:I,M-401$NRunning,,Local:2:I.DATA.12
+COMMENT,,Local:2:I,M-401$NFault,,Local:2:I.DATA.13
+COMMENT,,Local:2:I,M-401$NIn-Auto,,Local:2:I.DATA.14
+COMMENT,,Local:3:I,M-402$NRunning,,Local:3:I.DATA.0
+COMMENT,,Local:3:I,M-402$NFault,,Local:3:I.DATA.1
+COMMENT,,Local:3:I,M-402$NIn-Auto,,Local:3:I.DATA.2
+COMMENT,,Local:3:I,M-403$NRunning,,Local:3:I.DATA.3
+COMMENT,,Local:3:I,M-403$NFault,,Local:3:I.DATA.4
+COMMENT,,Local:3:I,M-403$NIn-Auto,,Local:3:I.DATA.5
+COMMENT,,Local:3:I,,,Local:3:I.DATA.6
+COMMENT,,Local:3:I,,,Local:3:I.DATA.7
+COMMENT,,Local:3:I,,,Local:3:I.DATA.8
+COMMENT,,Local:3:I,,,Local:3:I.DATA.9
+COMMENT,,Local:3:I,,,Local:3:I.DATA.10
+COMMENT,,Local:3:I,,,Local:3:I.DATA.11
+COMMENT,,Local:3:I,,,Local:3:I.DATA.12
+COMMENT,,Local:3:I,,,Local:3:I.DATA.13
+COMMENT,,Local:3:I,,,Local:3:I.DATA.14
+COMMENT,,Local:4:O,Secondary Tank #1$NStart/Stop,,Local:4:O.DATA.0
+COMMENT,,Local:4:O,Secondary Tank #2$NStart/Stop,,Local:4:O.DATA.1
+COMMENT,,Local:4:O,BLR-400$NStart/Stop,,Local:4:O.DATA.2
+COMMENT,,Local:4:O,M-400$NStart/Stop,,Local:4:O.DATA.3
+COMMENT,,Local:4:O,M-401$NStart/Stop,,Local:4:O.DATA.4
+COMMENT,,Local:4:O,M-402$NStart/Stop,,Local:4:O.DATA.5
+COMMENT,,Local:4:O,M-403$NStart/Stop,,Local:4:O.DATA.6
+COMMENT,,Local:5:I,Secondary Tank #1$NRAS Control$N0 - 3 MGD,,Local:5:I.CH0DATA
+COMMENT,,Local:5:I,Secondary Tank #2$NRAS Control$N0 - 3 MGD,,Local:5:I.CH1DATA
+COMMENT,,Local:5:I,,,Local:5:I.CH2DATA
+COMMENT,,Local:5:I,,,Local:5:I.CH3DATA
+ALIAS,,I_BLR400_InAuto,,,Local:2:I.DATA.0
+ALIAS,,I_BLR400_RunFdbk,,,Local:2:I.DATA.1
+ALIAS,,I_BLR400_Fault,,,Local:2:I.DATA.2
+ALIAS,,I_SecTk01_RunFdbk,,,Local:2:I.DATA.3
+ALIAS,,I_SecTk01_InAuto,,,Local:2:I.DATA.4
+ALIAS,,I_SecTk01_Torque,,,Local:2:I.DATA.5
+ALIAS,,I_SecTk02_RunFdbk,,,Local:2:I.DATA.6
+ALIAS,,I_SecTk02_InAuto,,,Local:2:I.DATA.7
+ALIAS,,I_SecTk02_Torque,,,Local:2:I.DATA.8
+ALIAS,,I_M400_Running,,,Local:2:I.DATA.9
+ALIAS,,I_M400_Fault,,,Local:2:I.DATA.10
+ALIAS,,I_M400_InAuto,,,Local:2:I.DATA.11
+ALIAS,,I_M401_Running,,,Local:2:I.DATA.12
+ALIAS,,I_M401_Fault,,,Local:2:I.DATA.13
+ALIAS,,I_M401_InAuto,,,Local:2:I.DATA.14
+ALIAS,,I_M402_Running,,,Local:3:I.DATA.0
+ALIAS,,I_M402_Fault,,,Local:3:I.DATA.1
+ALIAS,,I_M402_InAuto,,,Local:3:I.DATA.2
+ALIAS,,I_M403_Running,,,Local:3:I.DATA.3
+ALIAS,,I_M403_Fault,,,Local:3:I.DATA.4
+ALIAS,,I_M403_InAuto,,,Local:3:I.DATA.5
+ALIAS,,I_BLR400_InAuto_IOFault,,,Local:2:I.Fault.0
+ALIAS,,I_BLR400_RunFdbk_IOFault,,,Local:2:I.Fault.1
+ALIAS,,I_BLR400_Fault_IOFault,,,Local:2:I.Fault.2
+ALIAS,,I_SecTk1_RunFdbk_IOFault,,,Local:2:I.Fault.3
+ALIAS,,I_SecTk1_InAuto_IOFault,,,Local:2:I.Fault.4
+ALIAS,,I_SecTk1_Torque_IOFault,,,Local:2:I.Fault.5
+ALIAS,,I_SecTk1_RunFdbk_IOFault,,,Local:2:I.Fault.6
+ALIAS,,I_SecTk1_InAuto_IOFault,,,Local:2:I.Fault.7
+ALIAS,,I_SecTk1_Torque_IOFault,,,Local:2:I.Fault.8
+ALIAS,,I_M400_Running_IOFault,,,Local:2:I.Fault.9
+ALIAS,,I_M400_Fault_IOFault,,,Local:2:I.Fault.10
+ALIAS,,I_M400_InAuto_IOFault,,,Local:2:I.Fault.11
+ALIAS,,I_M401_Running_IOFault,,,Local:2:I.Fault.12
+ALIAS,,I_M401_Fault_IOFault,,,Local:2:I.Fault.13
+ALIAS,,I_M401_InAuto_IOFault,,,Local:2:I.Fault.14
+ALIAS,,I_M402_Running_IOFault,,,Local:3:I.Fault.0
+ALIAS,,I_M402_Fault_IOFault,,,Local:3:I.Fault.1
+ALIAS,,I_M402_InAuto_IOFault,,,Local:3:I.Fault.2
+ALIAS,,I_M403_Running_IOFault,,,Local:3:I.Fault.3
+ALIAS,,I_M403_Fault_IOFault,,,Local:3:I.Fault.4
+ALIAS,,I_M403_InAuto_IOFault,,,Local:3:I.Fault.5
+ALIAS,,O_SecTk01_Out_Run,Secondary Tank #1$NStart/Stop,,Local:4:O.DATA.0
+ALIAS,,O_SecTk02_Out_Run,Secondary Tank #2$NStart/Stop,,Local:4:O.DATA.1
+ALIAS,,O_BLR400_Out_Run,BLR-400$NStart/Stop,,Local:4:O.DATA.2
+ALIAS,,O_M401_Out_Run,M-400$NStart/Stop,,Local:4:O.DATA.3
+ALIAS,,O_M402_Out_Run,M-401$NStart/Stop,,Local:4:O.DATA.4
+ALIAS,,O_M403_Out_Run,M-402$NStart/Stop,,Local:4:O.DATA.5
+ALIAS,,O_M404_Out_Run,M-402$NStart/Stop,,Local:4:O.DATA.6
+ALIAS,,I_SecTk01_Flow,,,Local:5:I.CH0DATA
+ALIAS,,I_SecTk02_Flow,,,Local:5:I.CH1DATA
+ALIAS,,I_SecTk01_Flow_IOFault,,,Local:5:I.CH0Fault
+ALIAS,,I_SecTk02_Flow_IOFault,,,Local:5:I.CH1Fault
+TAG,,SecTk01_Intlk,Secondary Treatment Tank #1 Interlock,P_Intlk,
+TAG,,SecTk01_Motor,Secondary Treatment Tank #1 Motor,P_Motor,
+TAG,,SecTk01_Perm,Secondary Treatment Tank #1 Permissive,P_Perm,
+TAG,,SecTk01_Reset,Secondary Treatment Tank #1 Reset,P_Reset,
+TAG,,SecTk01_ResInh,Secondary Treatment Tank #1 Restart Inhibit,P_ResInh,
+TAG,,SecTk01_RunTime,Secondary Treatment Tank #1 Run Time,P_RunTime,
+TAG,,SecTk02_Intlk,Secondary Treatment Tank #2 Interlock,P_Intlk,
+TAG,,SecTk02_Motor,Secondary Treatment Tank #2 Motor,P_Motor,
+TAG,,SecTk02_Perm,Secondary Treatment Tank #2 Permissive,P_Perm,
+TAG,,SecTk02_Reset,Secondary Treatment Tank #2 Reset,P_Reset,
+TAG,,SecTk02_ResInh,Secondary Treatment Tank #2 Restart Inhibit,P_ResInh,
+TAG,,SecTk02_RunTime,Secondary Treatment Tank #2 Run Time,P_RunTime
+TAG,,BLR400_Intlk,BLR-400 Interlock,P_Intlk
+TAG,,BLR400_Motor,BLR-400 Motor,P_Motor
+TAG,,BLR400_Perm,BLR-400 Permissive,P_Perm
+TAG,,BLR400_Reset,BLR-400 Reset,P_Reset
+TAG,,BLR400_ResInh,BLR-400 Restart Inhibit,P_ResInh
+TAG,,BLR400_RunTime,BLR-400 Run Time,P_RunTime
+TAG,,M401_Intlk,M-401 Interlock,P_Intlk
+TAG,,M401_Motor,M-401 Motor,P_Motor
+TAG,,M401_Perm,M-401 Permissive,P_Perm
+TAG,,M401_Reset,M-401 Reset,P_Reset
+TAG,,M401_ResInh,M-401 Restart Inhibit,P_ResInh
+TAG,,M401_RunTime,M-401 Run Time,P_RunTime
+TAG,,M400_Intlk,M-400 Interlock,P_Intlk
+TAG,,M400_Motor,M-400 Motor,P_Motor
+TAG,,M400_Perm,M-400 Permissive,P_Perm
+TAG,,M400_Reset,M-400 Reset,P_Reset
+TAG,,M400_ResInh,M-400 Restart Inhibit,P_ResInh
+TAG,,M400_RunTime,M-400 Run Time,P_RunTime
+TAG,,M402_Intlk,M-402 Interlock,P_Intlk
+TAG,,M402_Motor,M-402 Motor,P_Motor
+TAG,,M402_Perm,M-402 Permissive,P_Perm
+TAG,,M402_Reset,M-402 Reset,P_Reset
+TAG,,M402_ResInh,M-402 Restart Inhibit,P_ResInh
+TAG,,M402_RunTime,M-402 Run Time,P_RunTime
+TAG,,M403_Intlk,M-403 Interlock,P_Intlk
+TAG,,M403_Motor,M-403 Motor,P_Motor
+TAG,,M403_Perm,M-403 Permissive,P_Perm
+TAG,,M403_Reset,M-403 Reset,P_Reset
+TAG,,M403_ResInh,M-403 Restart Inhibit,P_ResInh
+TAG,,M403_RunTime,M-403 Run Time,P_RunTime

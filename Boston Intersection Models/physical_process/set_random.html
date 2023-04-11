@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>Generate Random Input</h2>
+
+Select an coil to periodically send random input to this port.
+
+<form action="/reflector/RECEIVE_PORT" method='POST'>
+  <input type="hidden" id="receive_port" name="receive_port" value="RECEIVE_PORT"><br>
+  <label for="reflect_socket">Which coil should be affected?</label>
+  <select name="object" id="object">
+  DROPDOWN
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+</body>
+</html>

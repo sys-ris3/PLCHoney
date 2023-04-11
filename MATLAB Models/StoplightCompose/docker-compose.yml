@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  station0-plc:
+    build: ./station0
+    image: debian
+    ports:
+      - 8080:8080
+  station1-plc:
+    image: debian
+    build: ./station1
+    ports:
+      - 26001:26001
+      - 26002:26002
+      - 26003:26003
+      - 8081:8080
+    depends_on:
+      - station0-plc
+      - station2-plc
+  station2-plc:
+    image: debian
+    build: ./station2
+    ports:
+      - 26004:26004
+      - 26005:26005
+      - 26006:26006
+      - 8082:8080
+    depends_on:
+      - station0-plc
+  station3-plc:
+    image: debian
+    build: ./station3
+    ports:
+      - 26007:26007
+      - 26008:26008
+      - 26009:26009
+      - 8083:8080
+    depends_on:
+      - station0-plc
+      - station2-plc
