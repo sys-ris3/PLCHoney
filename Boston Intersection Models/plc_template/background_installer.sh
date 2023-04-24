@@ -23,17 +23,17 @@ fi
 function linux_install_deps {
     $1 apt-get update
     $1 apt-get install -y build-essential pkg-config bison flex autoconf \
-                          automake libtool make git python2.7 \
-                          sqlite3 cmake git curl
-    curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+                          automake libtool make git python2.7 iproute2\
+                          sqlite3 cmake git curl apt-utils > /dev/null 
+    curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
     $1 python2.7 get-pip.py
 }
 
 function install_py_deps {
-    $1 pip install flask
-    $1 pip install flask-login
-    $1 pip install pyserial
-    $1 pip install pymodbus
+    $1 pip install flask  > /dev/null
+    $1 pip install flask-login  > /dev/null
+    $1 pip install pyserial > /dev/null
+    $1 pip install pymodbus > /dev/null
 }
 
 function install_all_libs {
@@ -255,10 +255,10 @@ elif [ "$1" == "docker" ]; then
 
     echo ""
     echo "[FINALIZING]"
-    cd webserver/scripts
-    ./change_hardware_layer.sh blank_linux
-    ./compile_program.sh blank_program.st
-    cp ./start_openplc.sh ../../
+   cd webserver/scripts
+   ./change_hardware_layer.sh blank_linux
+   ./compile_program.sh blank_program.st
+   cp ./start_openplc.sh ../../
 
 elif [ "$1" == "rpi" ]; then
     echo "Installing OpenPLC on Raspberry Pi"
