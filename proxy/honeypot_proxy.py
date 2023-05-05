@@ -22,10 +22,12 @@ def modbus_proxy_response(byte_payload):
         modbus_sock.sendall(byte_payload)
         response = modbus_sock.recv(1024)
         modbus_sock.close()
+        print("Successfully proxied response to modbus.")
     except:
         # this is a generic modbus response, "Exception Code: Gateway target device failed to respond (11)
         # it's a good alternative to an empty response if the proxy server is down
         response = b'\x00\x00\x00\x00\x00\x03\x0a\x88\x0b'
+        print("Failed to proxy response to modbus, is the modbus ip and port reachable?")
 
     return response
 
@@ -123,6 +125,7 @@ while True:
             # if it's a device query, log the attempt and send the pre-chosen response since openplc will not
             # send something desirable
             if modbus_traffic:
+                print("This is a device enumeration request, send a canned response.")
                 event_record = {}
                 event_record['timestamp'] = time.time()
                 event_record['parsed_modbus'] = modbus_traffic
@@ -137,6 +140,7 @@ while True:
             # if it's not device enumeration, but it is valid modbus, pass it to the actual physical process simulation
             # and return that response to the client
             else:
+                print("This is not device enumeration - sending to modbus server.")
                 response_bytes = modbus_proxy_response(data)
                 connection.sendall(response_bytes)
 
