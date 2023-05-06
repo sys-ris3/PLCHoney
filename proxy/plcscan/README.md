@@ -20,6 +20,10 @@ reference for reading a coil: https://www.fernhillsoftware.com/help/drivers/modb
 sudo python plcscan.py --modbus-function=1 --modbus-data='\x00\x00\x00\x01' --hosts-list="hosts.txt" --timeout=20 
 ```
 
+To test writing to a coil
+```
+sudo python plcscan.py --modbus-function=5 --modbus-data='\x00\x64\xFF\x00' --hosts-list="hosts.txt" --timeout=20
+```
 
 where file hosts.txt looks like:
 ```
