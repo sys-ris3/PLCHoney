@@ -1,4 +1,4 @@
-import os, socket, sys, time, struct, json
+import os, socket, sys, time, struct, json, base64
 
 # this is the internal modbus IP address to pass modbus traffic to
 # should be an accessible interface of openplc, conpot, etc.
@@ -99,8 +99,22 @@ sock.bind(server_address)
 
 sock.listen(1)
 
-# this is a generic modbus response, "Exception Code: Gateway target device failed to respond (11)
-modbus_error_response = b'\x00\x00\x00\x00\x00\x03\x0a\x88\x0b'
+
+# if a profile is set, load the profile and respond as the selected device
+try:
+    fstream = open('current_profile.json', 'r')
+    jdata = json.loads(fstream.read())
+    fstream.close()
+
+    modbus_response = base64.b64decode(jdata['response_bytes'])
+    print("Successfully loaded PLC profile.")
+
+except:
+    # this is a generic modbus response, "Exception Code: Gateway target device failed to respond (11)
+    modbus_response = b'\x00\x00\x00\x00\x00\x03\x0a\x88\x0b'
+    print("Failed to load PLC profile, this server will send a generic Modbus error response.")
+
+
 
 while True:
     print('waiting for a connection')
@@ -135,7 +149,8 @@ while True:
                 fstream.write(json.dumps(event_record))
                 fstream.close()
                 print(event_record)
-                connection.sendall(modbus_error_response)
+                # TODO: Make the transaction ID the same as it is in the request
+                connection.sendall(modbus_response)
 
             # if it's not device enumeration, but it is valid modbus, pass it to the actual physical process simulation
             # and return that response to the client
