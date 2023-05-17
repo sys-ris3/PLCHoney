@@ -100,22 +100,6 @@ sock.bind(server_address)
 sock.listen(1)
 
 
-# if a profile is set, load the profile and respond as the selected device
-try:
-    fstream = open('current_profile.json', 'r')
-    jdata = json.loads(fstream.read())
-    fstream.close()
-
-    modbus_response = base64.b64decode(jdata['response_bytes'])
-    print("Successfully loaded PLC profile.")
-
-except:
-    # this is a generic modbus response, "Exception Code: Gateway target device failed to respond (11)
-    modbus_response = b'\x00\x00\x00\x00\x00\x03\x0a\x88\x0b'
-    print("Failed to load PLC profile, this server will send a generic Modbus error response.")
-
-
-
 while True:
     print('waiting for a connection')
     connection, client_address = sock.accept()
@@ -139,6 +123,23 @@ while True:
             # if it's a device query, log the attempt and send the pre-chosen response since openplc will not
             # send something desirable
             if modbus_traffic:
+                # if a profile is set, load the profile and respond as the selected device
+                try:
+                    fstream = open('current_profile.json', 'r')
+                    jdata = json.loads(fstream.read())
+                    fstream.close()
+
+                    modbus_response = base64.b64decode(jdata['response_bytes'])
+
+                    # set the transaction identifier to what was in the request to be more realistic
+                    transaction_id = struct.pack('>h', modbus_traffic['transaction_identifier'])
+                    modbus_response = transaction_id + modbus_response[2:]
+
+                except:
+                    # this is a generic modbus response, "Exception Code: Gateway target device failed to respond (11)
+                    modbus_response = b'\x00\x00\x00\x00\x00\x03\x0a\x88\x0b'
+                    print("Failed to load PLC profile, this server will send a generic Modbus error response.")
+
                 print("This is a device enumeration request, send a canned response.")
                 event_record = {}
                 event_record['timestamp'] = time.time()
@@ -149,7 +150,6 @@ while True:
                 fstream.write(json.dumps(event_record))
                 fstream.close()
                 print(event_record)
-                # TODO: Make the transaction ID the same as it is in the request
                 connection.sendall(modbus_response)
 
             # if it's not device enumeration, but it is valid modbus, pass it to the actual physical process simulation
