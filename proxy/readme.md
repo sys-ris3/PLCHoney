@@ -35,12 +35,12 @@ sudo python plcscan.py --modbus-function=1 --modbus-data='\x00\x00\x00\x01' --ho
 sudo python plcscan.py --modbus-function=5 --modbus-data='\x00\x64\xFF\x00' --hosts-list="hosts.txt" --timeout=20
 ```
 
-Sample output
-
-![writing a coil](/proxy/figures/write_coil_1.svg)
-
 where file hosts.txt looks like:
 ```
 0.0.0.0:504
 example.host:504
 ```
+
+Sample output
+
+![writing a coil](/proxy/figures/write_coil_1.svg)
