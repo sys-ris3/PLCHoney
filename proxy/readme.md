@@ -21,7 +21,7 @@ sudo python plcscan.py 0.0.0.0:504
 ```
 
 ### Sample output
-![device enumeration]/figures/device_enumeration.svg
+![device enumeration](/figures/device_enumeration.svg)
 
 To test reading a coil
 ```
