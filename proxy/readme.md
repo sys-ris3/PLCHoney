@@ -15,27 +15,32 @@ This will bring up the common 5 PLC profiles that we discovered. Choosing a numb
 
 ### Using PLCScan with the Proxy 
 
-To test the device enumeration
+- To test the device enumeration
 ```
 sudo python plcscan.py 0.0.0.0:504
 ```
 
-### Sample output
-![device enumeration](/figures/device_enumeration.svg)
+Sample output
 
-To test reading a coil
+![device enumeration](/proxy/figures/device_enumeration.svg)
+
+
+- To test reading a coil
 ```
 sudo python plcscan.py --modbus-function=1 --modbus-data='\x00\x00\x00\x01' --hosts-list="hosts.txt" --timeout=20 
 ```
 
-To test writing to a coil
+- To test writing to a coil
 ```
 sudo python plcscan.py --modbus-function=5 --modbus-data='\x00\x64\xFF\x00' --hosts-list="hosts.txt" --timeout=20
 ```
 
+Sample output
+
+![writing a coil](/proxy/figures/write_coil_1.svg)
+
 where file hosts.txt looks like:
 ```
 0.0.0.0:504
-192.168.1.107:102
 example.host:504
 ```
