@@ -1,5 +1,5 @@
 # Proxy for HoneyPLC
-This python server runs as a proxy for PLC node and handles the different response requests.
+This python server runs as a proxy for PLC node and handles the different requests.
 
 ## Features
 * Spoofing the identity of a Modbus device (through device enumeration)
