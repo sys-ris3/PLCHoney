@@ -24,6 +24,7 @@ Sample output
 
 ![device enumeration](/proxy/figures/device_enumeration.svg)
 
+**Reading and writing a coil:** _reference_ for reading a coil is available [here](https://www.fernhillsoftware.com/help/drivers/modbus/modbus-protocol.html#modbusTCP)
 
 - To test reading a coil
 ```
@@ -44,3 +45,16 @@ example.host:504
 Sample output
 
 ![writing a coil](/proxy/figures/write_coil_1.svg)
+
+## Citing our paper
+```
+@inproceedings {
+author = {Samin Y. Chowdhury and Brandon Dudley and Ruimin Sun},
+title = {The Case for Virtual PLC-enabled Honeypot Design},
+booktitle = {RICSS (co-located with 8th IEEE EuroS&P)}
+year = {2023},
+url = {},
+publisher = {{IEEE}},
+month = July,
+}
+```
