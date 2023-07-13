@@ -1,7 +1,10 @@
 # PLCHoney
 
 ## Overview
-With the emergence of virtual PLCs, this paper introduces a honeypot, named PLCHoney, to overcome the existing challenges in a cost-effective approach. We designed and implemented PLCHoney with a proxy profiler, dockerized virtual PLCs, a physical process simulator, and a security analysis engine. PLCHoney was able to correctly simulate responses to various internet requests and tested effectively on a network of virtualized traffic light applications. We enabled further security analysis with a dataset containing PLC I/O status, collected with and without attacks. We envision that PLCHoney paves the avenue for the future development of PLC-based honeypots.
+With the emergence of virtual PLCs, we introduce the honeypot PLCHoney, to overcome the existing challenges in a cost-effective approach. We designed and implemented PLCHoney with a proxy profiler, dockerized virtual PLCs, a physical process simulator, and a security analysis engine. PLCHoney was able to correctly simulate responses to various internet requests and tested effectively on a network of virtualized traffic light applications. We enabled further security analysis with a dataset containing PLC I/O status, collected with and without attacks. 
+
+![PLCHoney_arch](/figures/arch-1.png)
+
 
 ## Citing our paper
 ```
