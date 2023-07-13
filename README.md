@@ -5,6 +5,23 @@ With the emergence of virtual PLCs, we introduce the honeypot PLCHoney, to overc
 
 ![PLCHoney_arch](/figures/arch-1.png)
 
+## Requirements
+* Docker
+* Python 2.7+
+* Flask
+
+## Installation
+```
+git clone https://github.com/thiagoralves/OpenPLC_v3.git
+cd OpenPLC_v3
+./install.sh docker
+```
+
+## Running the program
+```
+cd Boston\ Intersection\ Models/
+sudo ./start_stoplights.py
+```
 
 ## Citing our paper
 ```
