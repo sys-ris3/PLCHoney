@@ -25,13 +25,12 @@ sudo ./start_stoplights.py
 
 ## Citing our paper
 ```
-@inproceedings {
-author = {Samin Y. Chowdhury and Brandon Dudley and Ruimin Sun},
-title = {The Case for Virtual PLC-enabled Honeypot Design},
-booktitle = {Re-design Industrial Control Systems with Security (RICSS) (co-located with 8th IEEE EuroS&P)}
-year = {2023},
-url = {},
-publisher = {{IEEE}},
-month = July,
+@inproceedings{chowdhury2023case,
+  title={The Case for Virtual PLC-Enabled Honeypot Design},
+  author={Chowdhury, Samin Y and Dudley, Brandon and Sun, Ruimin},
+  booktitle={2023 IEEE European Symposium on Security and Privacy Workshops (EuroS\&PW)},
+  pages={351--357},
+  year={2023},
+  organization={IEEE Computer Society}
 }
 ```
